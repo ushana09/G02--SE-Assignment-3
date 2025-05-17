@@ -75,10 +75,5 @@ Use the following default credentials to log in:
 
 ---
 
-## 📧 Contact
 
-For queries, please contact the E-Retail development team at:
-
-```
-support@e-retail.com
 ```
