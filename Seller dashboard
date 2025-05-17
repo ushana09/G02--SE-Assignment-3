@@ -1,0 +1,28 @@
+// SellerDashboard.java
+
+import javax.swing.*;
+import java.awt.*;
+
+public class SellerDashboard {
+    public static void showDashboard() {
+        JFrame dashboardFrame = new JFrame("Seller Dashboard");
+        dashboardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        dashboardFrame.setSize(400, 300);
+
+        JButton productBtn = new JButton("Product Management");
+        JButton inventoryBtn = new JButton("Inventory Tracking");
+        JButton analyticsBtn = new JButton("Sales Analytics");
+
+        JPanel panel = new JPanel(new GridLayout(3, 1));
+        panel.add(productBtn);
+        panel.add(inventoryBtn);
+        panel.add(analyticsBtn);
+
+        dashboardFrame.add(panel);
+        dashboardFrame.setVisible(true);
+
+        productBtn.addActionListener(e -> ProductManagementScreen.showProductManagement());
+        inventoryBtn.addActionListener(e -> InventoryTrackingScreen.showInventoryScreen());
+        analyticsBtn.addActionListener(e -> SalesAnalyticsScreen.showAnalyticsScreen());
+    }
+}
