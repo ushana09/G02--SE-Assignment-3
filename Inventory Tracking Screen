@@ -1,0 +1,17 @@
+// InventoryTrackingScreen.java
+
+
+import javax.swing.*;
+
+public class InventoryTrackingScreen {
+    public static void showInventoryScreen() {
+        JFrame inventoryFrame = new JFrame("Inventory Tracking");
+        inventoryFrame.setSize(400, 300);
+        JTextArea area = new JTextArea();
+        for (Product p : ProductManagementScreen.products) {
+            area.append(p.name + " - Qty: " + p.quantity + "\n");
+        }
+        inventoryFrame.add(new JScrollPane(area));
+        inventoryFrame.setVisible(true);
+    }
+}
