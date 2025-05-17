@@ -1,0 +1,60 @@
+// ProductManagementScreen.java
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductManagementScreen {
+    static List<Product> products = new ArrayList<>();
+
+    public static void showProductManagement() {
+        JFrame productFrame = new JFrame("Product Management");
+        productFrame.setSize(400, 300);
+
+        DefaultListModel<Product> listModel = new DefaultListModel<>();
+        for (Product p : products) listModel.addElement(p);
+        JList<Product> productList = new JList<>(listModel);
+
+        JButton addBtn = new JButton("Add");
+        JButton editBtn = new JButton("Edit");
+        JButton deleteBtn = new JButton("Delete");
+
+        JPanel btnPanel = new JPanel();
+        btnPanel.add(addBtn);
+        btnPanel.add(editBtn);
+        btnPanel.add(deleteBtn);
+
+        productFrame.add(new JScrollPane(productList), BorderLayout.CENTER);
+        productFrame.add(btnPanel, BorderLayout.SOUTH);
+
+        addBtn.addActionListener(e -> {
+            String name = JOptionPane.showInputDialog("Enter product name:");
+            int qty = Integer.parseInt(JOptionPane.showInputDialog("Enter quantity:"));
+            double price = Double.parseDouble(JOptionPane.showInputDialog("Enter price:"));
+            Product p = new Product(name, qty, price);
+            products.add(p);
+            listModel.addElement(p);
+        });
+
+        editBtn.addActionListener(e -> {
+            Product selected = productList.getSelectedValue();
+            if (selected != null) {
+                selected.name = JOptionPane.showInputDialog("Edit name:", selected.name);
+                selected.quantity = Integer.parseInt(JOptionPane.showInputDialog("Edit quantity:", selected.quantity));
+                selected.price = Double.parseDouble(JOptionPane.showInputDialog("Edit price:", selected.price));
+                productList.repaint();
+            }
+        });
+
+        deleteBtn.addActionListener(e -> {
+            Product selected = productList.getSelectedValue();
+            if (selected != null) {
+                products.remove(selected);
+                listModel.removeElement(selected);
+            }
+        });
+
+        productFrame.setVisible(true);
+    }
+}
