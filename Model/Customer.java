@@ -1,4 +1,4 @@
-import java.util.*;
+package Model;
 
 public class Customer {
     private String customerId;
@@ -23,6 +23,10 @@ public class Customer {
         return email.equals(inputEmail) && password.equals(inputPassword);
     }
 
+    public boolean validatePassword(String inputPassword) {
+        return this.password.equals(inputPassword);
+    }
+
     public void updateProfile(String newName, String newAddress) {
         this.name = newName;
         this.address = newAddress;
@@ -30,5 +34,17 @@ public class Customer {
 
     public void viewOrderHistory() {
         System.out.println("Order history for customer " + name);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCustomerId() {
+        return customerId;
     }
 }
