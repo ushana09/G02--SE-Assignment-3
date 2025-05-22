@@ -40,7 +40,7 @@ public class SellerView {
 
     public String promptProductName() {
         System.out.print("Enter product name: ");
-        scanner.nextLine(); // consume newline
+        scanner.nextLine();
         return scanner.nextLine();
     }
 
@@ -51,7 +51,7 @@ public class SellerView {
 
     public String promptProductToEdit() {
         System.out.print("Enter product name to edit: ");
-        scanner.nextLine(); // consume newline
+        scanner.nextLine(); 
         return scanner.nextLine();
     }
 

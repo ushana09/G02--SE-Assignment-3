@@ -1,7 +1,6 @@
 package Controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 import Model.Admin;
 import Model.Authentication;
@@ -12,8 +11,8 @@ import View.AdminView;
 public class AdminController {
     private Admin admin;
     private AdminView view = new AdminView();
-    private List<Discount> discounts = new ArrayList<>();
-    private List<Notification> notifications = new ArrayList<>();
+    private Discount discountManager = new Discount();       
+    private Notification notificationManager = new Notification();
 
     public void start() {
         admin = new Admin("admin", "admin123");
@@ -22,7 +21,7 @@ public class AdminController {
         String username = view.promptUsername();
         String password = view.promptPassword();
 
-        if (auth.authenticate(admin, username, password)) {
+        if (auth.authenticate(username, password)) {
             view.showLoginSuccess();
             showDashboard();
         } else {
@@ -52,16 +51,14 @@ public class AdminController {
     private void manageDiscounts() {
         String code = view.promptDiscountCode();
         double percentage = view.promptDiscountPercentage();
-        Discount discount = new Discount(code, percentage);
-        discounts.add(discount);
-        discount.displayDiscount();
+        discountManager.addDiscount(code, percentage);
+        discountManager.viewDiscounts();
     }
 
     private void manageNotifications() {
         String message = view.promptNotificationMessage();
-        Notification notification = new Notification(message);
-        notifications.add(notification);
-        notification.sendNotification();
+        notificationManager.sendNotification(message);
+        notificationManager.viewNotifications();
     }
 
     private void contactSupport() {

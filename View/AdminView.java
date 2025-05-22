@@ -53,7 +53,6 @@ public class AdminView {
     }
 
     public void showComingSoon(String string) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'showComingSoon'");
     }
 
