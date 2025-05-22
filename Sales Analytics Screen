@@ -1,0 +1,20 @@
+// SalesAnalyticsScreen.java
+
+import javax.swing.*;
+
+public class SalesAnalyticsScreen {
+    public static void showAnalyticsScreen() {
+        JFrame analyticsFrame = new JFrame("Sales Analytics");
+        analyticsFrame.setSize(400, 300);
+        JTextArea area = new JTextArea();
+
+        double totalSales = 0;
+        for (Product p : ProductManagementScreen.products) {
+            totalSales += p.quantity * p.price;
+        }
+        area.setText("Total Sales Value: $" + totalSales);
+
+        analyticsFrame.add(area);
+        analyticsFrame.setVisible(true);
+    }
+}
